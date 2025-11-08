@@ -1,0 +1,15 @@
+[
+{
+  "modid": "seasonalexpansion",
+  "name": "Seasonal expansion",
+  "description": "Addon for Serene Seasons. Fixes tooltips, adds a 12-year calendar, and more",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://discordapp.com/users/439862750764728343/",
+  "updateUrl": "https://ariamis.cc",
+  "authorList": ["Givler"],
+  "helped": [""],
+  "logoFile": "",
+  "credits": "Created specifically for the Ariamis project"
+}
+]
