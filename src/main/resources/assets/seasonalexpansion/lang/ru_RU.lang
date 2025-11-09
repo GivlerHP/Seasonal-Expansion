@@ -14,7 +14,7 @@ season.message.winter=Холодные ветра Лордрана\nпринес
 year.announcement=Наступил %s
 
 year.name.dragon=год Дракона
-year.desc.dragon=Магия огня усиливается.
+year.desc.dragon=Пламя выжигает скелетов до иссушения
 
 year.name.wolf=год Волка
 year.desc.wolf=Ночные твари становятся свирепее.
@@ -23,7 +23,7 @@ year.name.owl=год Совы
 year.desc.owl=Мудрость приносит удачу искателям знаний.
 
 year.name.snake=год Змеи
-year.desc.snake=Яды и болезни действуют дольше.
+year.desc.snake=Начинают идти ядовитые дожди
 
 year.name.deer=год Оленя
 year.desc.deer=Природа расцветает, урожай обилен.

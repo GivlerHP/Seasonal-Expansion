@@ -3,6 +3,8 @@ package ru.givler.seasonalexpansion.proxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.MinecraftForge;
+import ru.givler.seasonalexpansion.client.PoisonRainRenderer;
 import ru.givler.seasonalexpansion.client.SereneSeasonsTooltipCompat;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
 import ru.givler.seasonalexpansion.handler.YearCycleHandler;
@@ -29,6 +31,7 @@ public class ClientProxy extends CommonProxy {
 			SeasonAnnouncementHandler.register();
 			if (SeasonAnnouncementConfig.enableYearCycle) {
 				YearCycleHandler.register();
+				MinecraftForge.EVENT_BUS.register(new PoisonRainRenderer());
 			}
 		}
 	}

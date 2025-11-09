@@ -4,13 +4,18 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import ru.givler.seasonalexpansion.network.packet.S2CNewYearPacket;
+import ru.givler.seasonalexpansion.network.packet.S2CPoisonRainPacket;
 
 public class NetworkHandler {
 
-    public static final SimpleNetworkWrapper INSTANCE =
-            NetworkRegistry.INSTANCE.newSimpleChannel("SeasonalExpansion");
+    public static SimpleNetworkWrapper INSTANCE;
 
     public static void init() {
-        INSTANCE.registerMessage(S2CNewYearPacket.Handler.class, S2CNewYearPacket.class, 0, Side.CLIENT);
+        INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel("SeasonalExpansion");
+        int id = 0;
+
+        INSTANCE.registerMessage(S2CNewYearPacket.Handler.class, S2CNewYearPacket.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(S2CPoisonRainPacket.Handler.class, S2CPoisonRainPacket.class, id++, Side.CLIENT);
     }
+
 }
