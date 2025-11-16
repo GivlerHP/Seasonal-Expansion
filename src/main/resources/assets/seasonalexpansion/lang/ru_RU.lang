@@ -5,10 +5,17 @@ tooltip.se.summer=Лето
 tooltip.se.autumn=Осень
 tooltip.se.winter=Зима
 
+tile.telescope.name=Телескоп
+tile.mdtelescope.name=Телескоп
+
+entity.DireWolf.name=Люто-волк
+
 season.message.spring=Земля пробуждается\nвесна вновь встала из сна
 season.message.summer=Летнее солнце сожгло\nостатки весенней прохлады
 season.message.autumn=Опавшие листья шепчут\nоб наступающей осени
 season.message.winter=Холодные ветра Лордрана\nпринесли зиму
+
+message.telescope.year=Звёзды указывают, что сейчас %s
 
 # === Year Cycle ===
 year.announcement=Наступил %s
@@ -16,35 +23,35 @@ year.announcement=Наступил %s
 year.name.dragon=год Дракона
 year.desc.dragon=Пламя выжигает скелетов до иссушения
 
-year.name.wolf=год Волка
-year.desc.wolf=Ночные твари становятся свирепее.
+year.name.bat=год Летучей мыши
+year.desc.bat=Смерть наказывает сильнее
 
-year.name.owl=год Совы
-year.desc.owl=Мудрость приносит удачу искателям знаний.
+year.name.wolf=год Волка
+year.desc.wolf=Лютоволки выходят на охоту
 
 year.name.snake=год Змеи
 year.desc.snake=Начинают идти ядовитые дожди
 
-year.name.deer=год Оленя
-year.desc.deer=Природа расцветает, урожай обилен.
+year.name.owl=год Совы
+year.desc.owl=Мудрость приносит удачу искателям знаний
 
 year.name.bear=год Медведя
-year.desc.bear=Сила и стойкость наполняют сердца.
+year.desc.bear=Сила и стойкость наполняют сердца
 
 year.name.raven=год Ворона
-year.desc.raven=Мир затягивает в тень и дождь.
+year.desc.raven=Мир затягивает в тень и дождь
 
 year.name.tiger=год Тигра
-year.desc.tiger=Битвы становятся кровавее и яростнее.
+year.desc.tiger=Битвы становятся кровавее и яростнее
 
 year.name.phoenix=год Феникса
-year.desc.phoenix=Пламя жизни не угасает.
+year.desc.phoenix=Пламя жизни не угасает
 
 year.name.fish=год Рыбы
-year.desc.fish=Воды несут редкие сокровища.
+year.desc.fish=Воды несут редкие сокровища
 
-year.name.stone=год Камня
-year.desc.stone=Камни поддаются руке шахтёра.
+year.name.deer=год Оленя
+year.desc.deer=Природа расцветает, урожай обилен
 
-year.name.wind=год Ветра
-year.desc.wind=Ветра перемен несут удачу.
+year.name.minotaur=год Минотавра
+year.desc.minotaur=Минотавры впадают в ярость

@@ -1,38 +1,57 @@
+tooltip.se.fertile_seasons=Fertile Seasons
+tooltip.se.year_round=All Year Round
+tooltip.se.spring=Spring
+tooltip.se.summer=Summer
+tooltip.se.autumn=Autumn
+tooltip.se.winter=Winter
+
+tile.telescope.name=Telescope
+tile.mdtelescope.name=Telescope
+
+entity.DireWolf.name=Dire Wolf
+
+season.message.spring=The earth awakens,\nspring has risen from its slumber
+season.message.summer=The summer sun has burned\naway the last touch of spring's coolness
+season.message.autumn=Fallen leaves whisper\nof the coming autumn
+season.message.winter=Cold winds of Lordran\nhave brought the winter
+
+message.telescope.year=The stars reveal that it is now %s
+
 # === Year Cycle ===
-year.announcement=The Year of %s has begun
+year.announcement=%s has begun
 
 year.name.dragon=Year of the Dragon
-year.desc.dragon=Fire magic grows stronger.
+year.desc.dragon=Flames scorch skeletons to withered dust
+
+year.name.bat=Year of the Bat
+year.desc.bat=Death punishes more severely
 
 year.name.wolf=Year of the Wolf
-year.desc.wolf=Night creatures grow more savage.
-
-year.name.owl=Year of the Owl
-year.desc.owl=Wisdom blesses seekers of knowledge.
+year.desc.wolf=Dire wolves begin their hunt
 
 year.name.snake=Year of the Snake
-year.desc.snake=Poisons and diseases last longer.
+year.desc.snake=Poisonous rains begin to fall
 
-year.name.deer=Year of the Deer
-year.desc.deer=Nature flourishes; harvests are abundant.
+year.name.owl=Year of the Owl
+year.desc.owl=Wisdom brings fortune to seekers of knowledge
 
 year.name.bear=Year of the Bear
-year.desc.bear=Strength and endurance fill the hearts of warriors.
+year.desc.bear=Strength and resilience fill the hearts of the living
 
 year.name.raven=Year of the Raven
-year.desc.raven=Darkness and storms grow more common.
+year.desc.raven=The world sinks into shadow and rain
 
 year.name.tiger=Year of the Tiger
-year.desc.tiger=Battles grow bloodier and more fierce.
+year.desc.tiger=Battles become more bloody and ferocious
 
 year.name.phoenix=Year of the Phoenix
-year.desc.phoenix=The flame of life burns eternal.
+year.desc.phoenix=The flame of life does not fade
 
 year.name.fish=Year of the Fish
-year.desc.fish=The waters bring forth hidden treasures.
+year.desc.fish=The waters bring rare treasures
 
-year.name.stone=Year of the Stone
-year.desc.stone=The earth yields its ore more willingly.
+year.name.deer=Year of the Deer
+year.desc.deer=Nature blossoms, harvests are plentiful
 
-year.name.wind=Year of the Wind
-year.desc.wind=The winds of change carry fortune.
+year.name.minotaur=Year of the Minotaur
+year.desc.minotaur=Minotaurs fall into uncontrollable rage

@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import ru.givler.seasonalexpansion.registry.EntityMobRegistry;
 import ru.givler.seasonalexpansion.proxy.CommonProxy;
 
 @Mod(modid= SeasonalExpansion.ID, name= SeasonalExpansion.NAME, version= SeasonalExpansion.VERSION, dependencies = "required-after:sereneseasons" )
@@ -26,6 +27,7 @@ public class SeasonalExpansion {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.preInit(event);
+		EntityMobRegistry.registerEntities();
 	}
 	
 	@EventHandler

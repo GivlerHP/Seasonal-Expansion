@@ -18,17 +18,17 @@ public class YearSystem {
         int index = getCurrentYearIndex(world);
         switch (index) {
             case 0: return "dragon";
-            case 1: return "wolf";
-            case 2: return "owl";
+            case 1: return "bat";
+            case 2: return "wolf";
             case 3: return "snake";
-            case 4: return "deer";
+            case 4: return "owl";
             case 5: return "bear";
             case 6: return "raven";
             case 7: return "tiger";
             case 8: return "phoenix";
             case 9: return "fish";
-            case 10: return "stone";
-            case 11: return "wind";
+            case 10: return "deer";
+            case 11: return "minotaur";
             default: return "unknown";
         }
     }

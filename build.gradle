@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
     options.compilerArgs << '-Xlint:unchecked'
 }
 
-version = "1.6.13"
+version = "1.9.7"
 group= "ru.givler.seasonalexpansion" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SeasonalExpansion"
 
@@ -63,6 +63,8 @@ dependencies {
    // implementation name: 'bukkit'
    // compile name: 'Baubles'
 
+    compile name: "geckolib-unofficial-1.7.10-1.0.3-dev"
+    compile name: "Baubles-1.7.10-1.0.1.10-dev"
     compileOnly name: "SereneSeasons-Ariamis-1.0-deobf"
 }
 

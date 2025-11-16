@@ -1,6 +1,7 @@
 package ru.givler.seasonalexpansion.handler;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,6 +11,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import ru.givler.mbo.registry.PotionRegistry;
+import ru.givler.seasonalexpansion.entity.EntityDireWolf;
 import ru.givler.seasonalexpansion.network.NetworkHandler;
 import ru.givler.seasonalexpansion.network.packet.S2CPoisonRainPacket;
 import ru.givler.seasonalexpansion.world.YearWorldData;
@@ -17,7 +21,8 @@ import ru.givler.seasonalexpansion.world.YearWorldData;
 public class YearEffectHandler {
 
     private static final int YEAR_DRAGON = 0;
-
+    private static final int YEAR_BAT = 1;
+    private static final int YEAR_WOLF = 2;
     private static final int YEAR_SNAKE = 3;
     private static final int CHANCE_INTERVAL = 1200;
     private static final int DURATION_TICKS = 1200;
@@ -55,6 +60,33 @@ public class YearEffectHandler {
     }
 
     @SubscribeEvent
+    public void onWolfYearSpawn(LivingSpawnEvent.CheckSpawn event) {
+        if (event.world.isRemote) return;
+
+        YearWorldData data = YearWorldData.get(event.world);
+        if (data == null || data.getCurrentYear() != YEAR_WOLF) return;
+
+        long time = event.world.getWorldTime() % 24000L;
+        if (time < 13200L || time > 23000L) return;
+
+        int light = event.world.getBlockLightValue((int) event.x, (int) event.y, (int) event.z);
+        if (light > 7) return;
+
+        if (event.world.rand.nextInt(800) == 0) {
+
+            int count = 2 + event.world.rand.nextInt(2);
+            for (int i = 0; i < count; i++) {
+                EntityDireWolf wolf = new EntityDireWolf(event.world);
+                double dx = event.x + (event.world.rand.nextDouble() - 0.5D) * 8.0D;
+                double dz = event.z + (event.world.rand.nextDouble() - 0.5D) * 8.0D;
+                wolf.setLocationAndAngles(dx, event.y, dz, event.world.rand.nextFloat() * 360F, 0.0F);
+                event.world.spawnEntityInWorld(wolf);
+            }
+        }
+    }
+
+
+    @SubscribeEvent
     public void onWorldTick(TickEvent.WorldTickEvent event) {
         if (event.world.isRemote) return;
 
@@ -65,7 +97,7 @@ public class YearEffectHandler {
             YearWorldData data = YearWorldData.get(event.world);
             if (data != null && data.getCurrentYear() == YEAR_SNAKE) {
 
-                if (!poisonRainActive && event.world.isRaining() && event.world.rand.nextInt(4) == 0) {
+                if (!poisonRainActive && event.world.isRaining() && event.world.rand.nextInt(20) == 0) {
                     poisonRainActive = true;
                     poisonRainTicks = DURATION_TICKS;
                     NetworkHandler.INSTANCE.sendToAll(new S2CPoisonRainPacket(true));
@@ -99,7 +131,7 @@ public class YearEffectHandler {
                                 (int) entity.posX,
                                 (int) entity.posY + 1,
                                 (int) entity.posZ)) {
-                            entity.addPotionEffect(new PotionEffect(Potion.poison.id, 600, 0, true));
+                            entity.addPotionEffect(new PotionEffect(Potion.poison.id, 200, 0, true));
                         }
                     }
                 }
@@ -107,4 +139,21 @@ public class YearEffectHandler {
         }
     }
 
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerEvent.Clone event) {
+        if (event.entityPlayer.worldObj.isRemote) return;
+
+        YearWorldData data = YearWorldData.get(event.entityPlayer.worldObj);
+        if (data == null || data.getCurrentYear() != YEAR_BAT) return;
+
+        if (event.wasDeath) {
+            EntityPlayer player = event.entityPlayer;
+            if(Loader.isModLoaded("mbo")) {
+                player.addPotionEffect(new PotionEffect(PotionRegistry.Curse.id, 6000, 0, true));
+            }else {
+                player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, 6000, 1, true));
+                player.addPotionEffect(new PotionEffect(Potion.weakness.id, 6000, 1, true));
+            }
+        }
+    }
 }

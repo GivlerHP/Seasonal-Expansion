@@ -24,9 +24,18 @@ public class YearCycleHandler {
 
     /** Цвета годов */
     private static final int[] YEAR_COLORS = {
-            0xFF6600, 0xAAAAAA, 0x88AAFF, 0x66FF66,
-            0x55FF55, 0xCC9966, 0x4444AA, 0xFFAA00,
-            0xFF3300, 0x00CCCC, 0xBBBBBB, 0x99FFFF
+            0xFF4500, // dragon
+            0x4B0082, // bat
+            0xA9A9A9, // wolf
+            0x3CB371, // snake
+            0xC0C0FF, // owl
+            0x8B4513, // bear
+            0x000033, // raven
+            0xFF8C00, // tiger
+            0xFF0033, // phoenix
+            0x0099CC, // fish
+            0x9C6B30, // deer
+            0x7B3F00  // minotaur
     };
 
     public static void register() {
@@ -49,17 +58,17 @@ public class YearCycleHandler {
     private static String getYearKey(int index) {
         switch (index) {
             case 0: return "dragon";
-            case 1: return "wolf";
-            case 2: return "owl";
+            case 1: return "bat";
+            case 2: return "wolf";
             case 3: return "snake";
-            case 4: return "deer";
+            case 4: return "owl";
             case 5: return "bear";
             case 6: return "raven";
             case 7: return "tiger";
             case 8: return "phoenix";
             case 9: return "fish";
-            case 10: return "stone";
-            case 11: return "wind";
+            case 10: return "deer";
+            case 11: return "minotaur";
             default: return "unknown";
         }
     }

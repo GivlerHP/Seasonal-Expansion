@@ -1,9 +1,13 @@
 package ru.givler.seasonalexpansion.proxy;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import ru.givler.seasonalexpansion.client.render.RenderDireWolf;
+import ru.givler.seasonalexpansion.entity.EntityDireWolf;
+import ru.givler.seasonalexpansion.registry.BlockRegistry;
 import ru.givler.seasonalexpansion.command.CommandCurrentYear;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
 import ru.givler.seasonalexpansion.handler.YearEffectHandler;
@@ -15,10 +19,13 @@ public class CommonProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkHandler.init();
 		SeasonAnnouncementConfig.load(event.getModConfigurationDirectory());
+		BlockRegistry.preLoad(event);
+
 	}
 
 	public void init(FMLInitializationEvent event) {
 		if (SeasonAnnouncementConfig.enableYearCycle) {
+			BlockRegistry.init(event);
 			YearLogicHandler.register();
 			YearEffectHandler.register();
 		}
@@ -29,6 +36,8 @@ public class CommonProxy {
 
 	public void serverStarting(FMLServerStartingEvent event) {
 		event.registerServerCommand(new CommandCurrentYear());
+	}
 
+	public void registerRenderers() {
 	}
 }
