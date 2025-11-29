@@ -34,13 +34,14 @@ public class BlockTelescope extends Block {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z,
                                     EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-
         if (world.isRemote) return true;
+
         String yearName = YearSystem.getCurrentYearName(world);
 
-        String message = "§6Звёзды указывают, что сейчас " + yearName;
-        player.addChatMessage(new ChatComponentText(message));
-
+        String message = StatCollector.translateToLocalFormatted(
+                "seasonalexpansion.telescope.message", yearName
+        );
+        player.addChatMessage(new ChatComponentText("§6" + message));
         return true;
     }
 }

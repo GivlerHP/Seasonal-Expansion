@@ -39,7 +39,7 @@ public class YearEffectHandler {
         YearEffectHandler handler = new YearEffectHandler();
         MinecraftForge.EVENT_BUS.register(handler);
         FMLCommonHandler.instance().bus().register(handler);
-        System.out.println("[SE] Registered YearEffectHandler (Forge + FML)");
+     //   System.out.println("[SE] Registered YearEffectHandler (Forge + FML)");
     }
     @SubscribeEvent
     public void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
@@ -55,7 +55,7 @@ public class YearEffectHandler {
 
         if (event.world.rand.nextInt(20) == 0) { // 1 из 20 = 5%
             skeleton.setSkeletonType(1); // тип 1 = Wither Skeleton
-            System.out.println("[SE] Год Дракона: обычный скелет превращён в иссушителя!");
+         //   System.out.println("[SE] Год Дракона: обычный скелет превращён в иссушителя!");
         }
     }
 
@@ -101,7 +101,7 @@ public class YearEffectHandler {
                     poisonRainActive = true;
                     poisonRainTicks = DURATION_TICKS;
                     NetworkHandler.INSTANCE.sendToAll(new S2CPoisonRainPacket(true));
-                    System.out.println("[SE] Год Змеи: начался ядовитый дождь!");
+                //    System.out.println("[SE] Год Змеи: начался ядовитый дождь!");
                 }
             }
         }
@@ -112,7 +112,7 @@ public class YearEffectHandler {
             if (poisonRainTicks <= 0) {
                 poisonRainActive = false;
                 NetworkHandler.INSTANCE.sendToAll(new S2CPoisonRainPacket(false));
-                System.out.println("[SE] Ядовитый дождь закончился (истёк таймер).");
+               // System.out.println("[SE] Ядовитый дождь закончился (истёк таймер).");
             } else {
                 checkTimer++;
                 if (checkTimer >= PLAYER_CHECK_INTERVAL) {

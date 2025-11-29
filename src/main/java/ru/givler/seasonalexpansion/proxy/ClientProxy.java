@@ -29,7 +29,6 @@ public class ClientProxy extends CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
 		if(Loader.isModLoaded("mbo")) {
-			System.out.println("[SEASONAL] Binding render for telescope: " + BlockRegistry.mdtelescope);
 			bindDefaultRender(BlockRegistry.mdtelescope);
 		}
 		registerRenderers();

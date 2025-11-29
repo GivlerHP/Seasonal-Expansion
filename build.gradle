@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
     options.compilerArgs << '-Xlint:unchecked'
 }
 
-version = "1.9.7"
+version = "1.10.2"
 group= "ru.givler.seasonalexpansion" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SeasonalExpansion"
 

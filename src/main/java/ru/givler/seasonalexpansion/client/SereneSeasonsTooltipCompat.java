@@ -33,7 +33,7 @@ public class SereneSeasonsTooltipCompat {
 
         if (!initialized) init();
         MinecraftForge.EVENT_BUS.register(new SereneSeasonsTooltipCompat());
-        System.out.println("[SE] SereneSeasonsTooltipCompat: handler registered, entries=" + plantToSeasons.size());
+    //    System.out.println("[SE] SereneSeasonsTooltipCompat: handler registered, entries=" + plantToSeasons.size());
     }
 
 
@@ -45,9 +45,9 @@ public class SereneSeasonsTooltipCompat {
             processConfigArray(FertilityConfig.seasonal_fertility.autumn_crops, 4);
             processConfigArray(FertilityConfig.seasonal_fertility.winter_crops, 8);
             initialized = true;
-            System.out.println("[SE] SereneSeasonsTooltipCompat initialized with " + plantToSeasons.size() + " entries");
+       //     System.out.println("[SE] SereneSeasonsTooltipCompat initialized with " + plantToSeasons.size() + " entries");
         } catch (Throwable t) {
-            System.err.println("[SE] Failed to initialize SereneSeasonsTooltipCompat");
+       //     System.err.println("[SE] Failed to initialize SereneSeasonsTooltipCompat");
             t.printStackTrace();
         }
     }
@@ -96,7 +96,7 @@ public class SereneSeasonsTooltipCompat {
                 }
 
             } catch (Throwable t) {
-                System.err.println("[SE] Failed to process config entry: " + entry);
+          //      System.err.println("[SE] Failed to process config entry: " + entry);
                 t.printStackTrace();
             }
         }

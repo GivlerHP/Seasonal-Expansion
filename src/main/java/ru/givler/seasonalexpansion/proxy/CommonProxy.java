@@ -7,10 +7,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import ru.givler.seasonalexpansion.client.render.RenderDireWolf;
 import ru.givler.seasonalexpansion.entity.EntityDireWolf;
+import ru.givler.seasonalexpansion.handler.WinterHandler;
+import ru.givler.seasonalexpansion.handler.YearEffectHandler;
 import ru.givler.seasonalexpansion.registry.BlockRegistry;
 import ru.givler.seasonalexpansion.command.CommandCurrentYear;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
-import ru.givler.seasonalexpansion.handler.YearEffectHandler;
 import ru.givler.seasonalexpansion.handler.YearLogicHandler;
 import ru.givler.seasonalexpansion.network.NetworkHandler;
 
@@ -28,6 +29,7 @@ public class CommonProxy {
 			BlockRegistry.init(event);
 			YearLogicHandler.register();
 			YearEffectHandler.register();
+			WinterHandler.register();
 		}
 	}
 
