@@ -1,6 +1,7 @@
 package ru.givler.seasonalexpansion.handler;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -9,6 +10,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import org.lwjgl.opengl.GL11;
+import ru.givler.seasonalexpansion.util.YearSystem;
 
 @SideOnly(Side.CLIENT)
 public class YearCycleHandler {
@@ -29,8 +31,8 @@ public class YearCycleHandler {
             0xA9A9A9, // wolf
             0x3CB371, // snake
             0xC0C0FF, // owl
-            0x8B4513, // bear
             0x000033, // raven
+            0x8B4513, // bear
             0xFF8C00, // tiger
             0xFF0033, // phoenix
             0x0099CC, // fish
@@ -39,13 +41,15 @@ public class YearCycleHandler {
     };
 
     public static void register() {
-        MinecraftForge.EVENT_BUS.register(new YearCycleHandler());
+        YearCycleHandler handler = new YearCycleHandler();
+        MinecraftForge.EVENT_BUS.register(handler);
+        cpw.mods.fml.common.FMLCommonHandler.instance().bus().register(handler);
         System.out.println("[SE] Registered YearCycleHandler (client)");
     }
 
     /** Вызывается из пакета при наступлении нового года */
     public static void showYearOverlay(int yearIndex) {
-        String key = getYearKey(yearIndex);
+        String key = YearSystem.getYearKeyByIndex(yearIndex);
         String title = StatCollector.translateToLocal("year.name." + key);
         String desc = StatCollector.translateToLocal("year.desc." + key);
 
@@ -55,21 +59,11 @@ public class YearCycleHandler {
         fadeTicks = DISPLAY_DURATION;
     }
 
-    private static String getYearKey(int index) {
-        switch (index) {
-            case 0: return "dragon";
-            case 1: return "bat";
-            case 2: return "wolf";
-            case 3: return "snake";
-            case 4: return "owl";
-            case 5: return "bear";
-            case 6: return "raven";
-            case 7: return "tiger";
-            case 8: return "phoenix";
-            case 9: return "fish";
-            case 10: return "deer";
-            case 11: return "minotaur";
-            default: return "unknown";
+    // НОВЫЙ МЕТОД: уменьшаем счётчик каждый ТИК, а не каждый кадр
+    @SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase == TickEvent.Phase.END && fadeTicks > 0) {
+            fadeTicks--;
         }
     }
 
@@ -113,6 +107,5 @@ public class YearCycleHandler {
         mc.fontRenderer.drawString(displaySubtitle, (int)xSub, (int)ySub, subArgb);
 
         GL11.glPopMatrix();
-        fadeTicks--;
     }
 }

@@ -13,17 +13,16 @@ public class YearSystem {
         return data != null ? data.getCurrentYear() : 0;
     }
 
-    /** Возвращает ключ для текущего года (например "dragon", "wolf" и т.д.) */
-    public static String getCurrentYearKey(World world) {
-        int index = getCurrentYearIndex(world);
+    /** Возвращает ключ года по индексу (статический метод для использования без World) */
+    public static String getYearKeyByIndex(int index) {
         switch (index) {
             case 0: return "dragon";
             case 1: return "bat";
             case 2: return "wolf";
             case 3: return "snake";
             case 4: return "owl";
-            case 5: return "bear";
-            case 6: return "raven";
+            case 5: return "raven";
+            case 6: return "bear";
             case 7: return "tiger";
             case 8: return "phoenix";
             case 9: return "fish";
@@ -31,6 +30,11 @@ public class YearSystem {
             case 11: return "minotaur";
             default: return "unknown";
         }
+    }
+
+    /** Возвращает ключ для текущего года (например "dragon", "wolf" и т.д.) */
+    public static String getCurrentYearKey(World world) {
+        return getYearKeyByIndex(getCurrentYearIndex(world));
     }
 
     /** Возвращает локализованное имя текущего года */

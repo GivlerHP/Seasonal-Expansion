@@ -9,6 +9,7 @@ tile.telescope.name=Телескоп
 tile.mdtelescope.name=Телескоп
 
 entity.DireWolf.name=Люто-волк
+entity.Raven.name=Ворон
 
 season.message.spring=Земля пробуждается\nвесна вновь встала из сна
 season.message.summer=Летнее солнце сожгло\nостатки весенней прохлады
@@ -34,13 +35,13 @@ year.name.snake=год Змеи
 year.desc.snake=Начинают идти ядовитые дожди
 
 year.name.owl=год Совы
-year.desc.owl=Мудрость приносит удачу искателям знаний
+year.desc.owl=Древние войны выходят из могил
+
+year.name.raven=год Ворона
+year.desc.raven=Вороны вернулись из далека
 
 year.name.bear=год Медведя
 year.desc.bear=Сила и стойкость наполняют сердца
-
-year.name.raven=год Ворона
-year.desc.raven=Мир затягивает в тень и дождь
 
 year.name.tiger=год Тигра
 year.desc.tiger=Битвы становятся кровавее и яростнее

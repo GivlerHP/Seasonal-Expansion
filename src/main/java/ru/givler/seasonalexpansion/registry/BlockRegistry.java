@@ -7,7 +7,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import ru.givler.mbo.block.BlockModels;
-import ru.givler.mbo.models.ExternalModelRegistry;
 import ru.givler.seasonalexpansion.block.BlockTelescope;
 import ru.givler.seasonalexpansion.block.ModelTelescope;
 

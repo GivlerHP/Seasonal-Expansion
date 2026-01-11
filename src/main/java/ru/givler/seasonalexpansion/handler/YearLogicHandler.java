@@ -34,7 +34,6 @@ public class YearLogicHandler {
 
         YearWorldData data = YearWorldData.get(world);
 
-        // Смена года только один раз за середину зимы
         if (sub == Season.SubSeason.MID_WINTER) {
             if (!data.hasChangedThisWinter()) {
                 int newYear = (data.getCurrentYear() + 1) % 12;

@@ -2,15 +2,16 @@ package ru.givler.seasonalexpansion.handler;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
 import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.Season;
@@ -21,9 +22,7 @@ import java.io.File;
 @SideOnly(Side.CLIENT)
 public class SeasonAnnouncementHandler {
 
-    private static Season lastSeason = null;
-    private static int tickCounter = 0;
-    private static boolean justJoined = false;
+    private static Season.SubSeason lastSubSeason = null;
 
     private static int fadeTicks = 0;
     private static String displayText = "";
@@ -47,12 +46,10 @@ public class SeasonAnnouncementHandler {
     @SubscribeEvent
     public void onWorldLoad(WorldEvent.Load event) {
         if (event.world.isRemote) {
-            lastSeason = null;
-            tickCounter = 0;
+            lastSubSeason = null;
             fadeTicks = 0;
             displayText = "";
             displaySeason = null;
-            justJoined = true;
         }
     }
 
@@ -60,49 +57,49 @@ public class SeasonAnnouncementHandler {
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
 
+        if (fadeTicks > 0) {
+            fadeTicks--;
+        }
+
         Minecraft mc = Minecraft.getMinecraft();
-        if (mc.theWorld == null || mc.thePlayer == null) return;
+        World world = mc.theWorld;
+        if (world == null || mc.thePlayer == null) return;
 
-        tickCounter++;
-        if (tickCounter < 200) return;
-        tickCounter = 0;
-
-        ISeasonState state = SeasonHelper.getSeasonState(mc.theWorld);
+        ISeasonState state = SeasonHelper.getSeasonState(world);
         if (state == null) return;
 
-        Season current = state.getSeason();
-        if (current == null) return;
+        Season.SubSeason currentSubSeason = state.getSubSeason();
+        if (currentSubSeason == null) return;
 
-        if (justJoined) {
-            lastSeason = current;
-            justJoined = false;
+        if (lastSubSeason == null) {
+            lastSubSeason = currentSubSeason;
             return;
         }
 
-        if (lastSeason != current) {
-            lastSeason = current;
-            showSeasonOverlay(current);
+        if (lastSubSeason != currentSubSeason) {
+            lastSubSeason = currentSubSeason;
+
+            if (currentSubSeason == Season.SubSeason.EARLY_SPRING) {
+                showSeasonOverlay(Season.SPRING);
+            } else if (currentSubSeason == Season.SubSeason.EARLY_SUMMER) {
+                showSeasonOverlay(Season.SUMMER);
+            } else if (currentSubSeason == Season.SubSeason.EARLY_AUTUMN) {
+                showSeasonOverlay(Season.AUTUMN);
+            } else if (currentSubSeason == Season.SubSeason.EARLY_WINTER) {
+                showSeasonOverlay(Season.WINTER);
+            }
         }
     }
 
-    private void showSeasonOverlay(Season season) {
-        Minecraft mc = Minecraft.getMinecraft();
-
+    /** Вызывается для показа оверлея смены сезона */
+    public static void showSeasonOverlay(Season season) {
         String key = "season.message." + season.name().toLowerCase();
         String text = StatCollector.translateToLocal(key);
-        if (text == null || text.isEmpty() || text.equals(key)) {
-            switch (season) {
-                case SPRING: text = "Весна вступает в свои права"; break;
-                case SUMMER: text = "Жаркое лето наступило"; break;
-                case AUTUMN: text = "Осень укрывает землю"; break;
-                case WINTER: text = "Холодные ветра принесли зиму"; break;
-                default: text = "Смена сезона"; break;
-            }
-        }
 
         displayText = text;
         displaySeason = season;
         fadeTicks = SeasonAnnouncementConfig.displayDuration;
+        System.out.println("[SE] Season changed to: " + season.name());
     }
 
     private static int getSeasonRGB(Season s) {
@@ -115,7 +112,7 @@ public class SeasonAnnouncementHandler {
         }
     }
 
-    /** Рисуем на экране наступление нового сезона*/
+    /** Рисуем на экране наступление нового сезона */
     @SubscribeEvent
     public void onRenderOverlay(RenderGameOverlayEvent.Post event) {
         if (!SHOW_OVERLAY || fadeTicks <= 0 || event.type != RenderGameOverlayEvent.ElementType.ALL)
@@ -162,7 +159,5 @@ public class SeasonAnnouncementHandler {
         }
 
         org.lwjgl.opengl.GL11.glPopMatrix();
-        fadeTicks--;
     }
-
 }

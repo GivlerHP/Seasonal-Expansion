@@ -8,9 +8,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.MinecraftForge;
 import ru.givler.seasonalexpansion.client.PoisonRainRenderer;
 import ru.givler.seasonalexpansion.client.SereneSeasonsTooltipCompat;
+import ru.givler.seasonalexpansion.client.render.RenderBird;
 import ru.givler.seasonalexpansion.client.render.RenderDireWolf;
+import ru.givler.seasonalexpansion.client.render.model.ModelRaven;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
 import ru.givler.seasonalexpansion.entity.EntityDireWolf;
+import ru.givler.seasonalexpansion.entity.EntityRaven;
 import ru.givler.seasonalexpansion.handler.YearCycleHandler;
 import ru.givler.seasonalexpansion.handler.SeasonAnnouncementHandler;
 import ru.givler.seasonalexpansion.registry.BlockRegistry;
@@ -50,5 +53,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenderers() {
 		RenderingRegistry.registerEntityRenderingHandler(EntityDireWolf.class, new RenderDireWolf());
+		RenderingRegistry.registerEntityRenderingHandler(EntityRaven.class, new RenderBird(new ModelRaven(), 1.0F, "raven.png"));
 	}
 }

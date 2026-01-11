@@ -1,0 +1,38 @@
+{
+  "mob.raven.caw": {
+    "category": "neutral",
+    "sounds": [
+      "mob/raven/caw0",
+      "mob/raven/caw1"
+    ]
+  },
+  "mob.raven.squawk": {
+    "category": "neutral",
+    "sounds": [
+      "mob/raven/squawk0",
+      "mob/raven/squawk1"
+    ]
+  },
+  "mob.tinybird.chirp": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tinybird/chirp0",
+      "mob/tinybird/chirp1",
+      "mob/tinybird/chirp2"
+    ]
+  },
+  "mob.tinybird.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tinybird/hurt0",
+      "mob/tinybird/hurt1"
+    ]
+  },
+  "mob.tinybird.song": {
+    "category": "neutral",
+    "sounds": [
+      "mob/tinybird/song0",
+      "mob/tinybird/song1"
+    ]
+  }
+}
