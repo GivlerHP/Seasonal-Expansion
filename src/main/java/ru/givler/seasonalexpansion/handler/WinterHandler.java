@@ -1,8 +1,6 @@
 package ru.givler.seasonalexpansion.handler;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.item.ItemStack;
@@ -18,11 +16,14 @@ public class WinterHandler {
         if (!(event.target instanceof EntityAnimal)) return;
 
         EntityAnimal animal = (EntityAnimal) event.target;
+        if (animal.worldObj.isRemote) return;
         ItemStack held = event.entityPlayer.getHeldItem();
 
         if (held == null) return;
 
-        Season current = SeasonHelper.getSeasonState(animal.worldObj).getSeason();
+        sereneseasons.api.season.ISeasonState state = SeasonHelper.getSeasonState(animal.worldObj);
+        if (state == null) return;
+        Season current = state.getSeason();
 
         if (current == Season.WINTER && animal.isBreedingItem(held)) {
             event.setCanceled(true);
@@ -35,6 +36,5 @@ public class WinterHandler {
     static public void register() {
         WinterHandler handler = new WinterHandler();
         MinecraftForge.EVENT_BUS.register(handler);
-        FMLCommonHandler.instance().bus().register(handler);
     }
 }

@@ -14,6 +14,7 @@ import ru.givler.seasonalexpansion.command.CommandCurrentYear;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
 import ru.givler.seasonalexpansion.handler.YearLogicHandler;
 import ru.givler.seasonalexpansion.network.NetworkHandler;
+import ru.givler.seasonalexpansion.handler.SeasonAnnouncementServerHandler;
 
 public class CommonProxy {
 
@@ -25,6 +26,9 @@ public class CommonProxy {
 	}
 
 	public void init(FMLInitializationEvent event) {
+		if (SeasonAnnouncementConfig.enableAnnouncements) {
+			SeasonAnnouncementServerHandler.register();
+		}
 		if (SeasonAnnouncementConfig.enableYearCycle) {
 			BlockRegistry.init(event);
 			YearLogicHandler.register();

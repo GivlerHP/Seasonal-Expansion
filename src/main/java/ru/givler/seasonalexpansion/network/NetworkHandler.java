@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import ru.givler.seasonalexpansion.network.packet.S2CNewYearPacket;
 import ru.givler.seasonalexpansion.network.packet.S2CPoisonRainPacket;
+import ru.givler.seasonalexpansion.network.packet.S2CSeasonAnnouncementPacket;
 
 public class NetworkHandler {
 
@@ -16,6 +17,7 @@ public class NetworkHandler {
 
         INSTANCE.registerMessage(S2CNewYearPacket.Handler.class, S2CNewYearPacket.class, id++, Side.CLIENT);
         INSTANCE.registerMessage(S2CPoisonRainPacket.Handler.class, S2CPoisonRainPacket.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(S2CSeasonAnnouncementPacket.Handler.class, S2CSeasonAnnouncementPacket.class, id++, Side.CLIENT);
     }
 
 }

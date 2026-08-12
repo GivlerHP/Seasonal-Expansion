@@ -18,9 +18,6 @@ import ru.givler.seasonalexpansion.handler.YearCycleHandler;
 import ru.givler.seasonalexpansion.handler.SeasonAnnouncementHandler;
 import ru.givler.seasonalexpansion.registry.BlockRegistry;
 
-import static ru.givler.mbo.proxy.ClientProxy.bindDefaultRender;
-
-
 public class ClientProxy extends CommonProxy {
 
 	@Override
@@ -32,7 +29,7 @@ public class ClientProxy extends CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
 		if(Loader.isModLoaded("mbo")) {
-			bindDefaultRender(BlockRegistry.mdtelescope);
+			BlockRegistry.bindMboTelescopeRenderer();
 		}
 		registerRenderers();
 	}

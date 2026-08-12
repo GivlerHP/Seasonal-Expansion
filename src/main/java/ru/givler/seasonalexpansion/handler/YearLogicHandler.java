@@ -24,7 +24,7 @@ public class YearLogicHandler {
     @SubscribeEvent
     public void onServerTick(TickEvent.WorldTickEvent event) {
         World world = event.world;
-        if (world.isRemote || world.provider.dimensionId != 0) return; // только основной мир
+        if (event.phase != TickEvent.Phase.END || world.isRemote || world.provider.dimensionId != 0) return;
 
         ISeasonState state = SeasonHelper.getSeasonState(world);
         if (state == null) return;

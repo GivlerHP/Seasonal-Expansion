@@ -8,21 +8,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.StatCollector;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.WorldEvent;
 import ru.givler.seasonalexpansion.config.SeasonAnnouncementConfig;
-import sereneseasons.api.season.ISeasonState;
 import sereneseasons.api.season.Season;
-import sereneseasons.api.season.SeasonHelper;
 
 import java.io.File;
 
 @SideOnly(Side.CLIENT)
 public class SeasonAnnouncementHandler {
-
-    private static Season.SubSeason lastSubSeason = null;
 
     private static int fadeTicks = 0;
     private static String displayText = "";
@@ -44,50 +38,9 @@ public class SeasonAnnouncementHandler {
     }
 
     @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event) {
-        if (event.world.isRemote) {
-            lastSubSeason = null;
-            fadeTicks = 0;
-            displayText = "";
-            displaySeason = null;
-        }
-    }
-
-    @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return;
-
-        if (fadeTicks > 0) {
+        if (event.phase == TickEvent.Phase.END && fadeTicks > 0) {
             fadeTicks--;
-        }
-
-        Minecraft mc = Minecraft.getMinecraft();
-        World world = mc.theWorld;
-        if (world == null || mc.thePlayer == null) return;
-
-        ISeasonState state = SeasonHelper.getSeasonState(world);
-        if (state == null) return;
-
-        Season.SubSeason currentSubSeason = state.getSubSeason();
-        if (currentSubSeason == null) return;
-
-        if (lastSubSeason == null) {
-            lastSubSeason = currentSubSeason;
-            return;
-        }
-
-        if (lastSubSeason != currentSubSeason) {
-            lastSubSeason = currentSubSeason;
-
-            if (currentSubSeason == Season.SubSeason.EARLY_SPRING) {
-                showSeasonOverlay(Season.SPRING);
-            } else if (currentSubSeason == Season.SubSeason.EARLY_SUMMER) {
-                showSeasonOverlay(Season.SUMMER);
-            } else if (currentSubSeason == Season.SubSeason.EARLY_AUTUMN) {
-                showSeasonOverlay(Season.AUTUMN);
-            } else if (currentSubSeason == Season.SubSeason.EARLY_WINTER) {
-                showSeasonOverlay(Season.WINTER);
-            }
         }
     }
 

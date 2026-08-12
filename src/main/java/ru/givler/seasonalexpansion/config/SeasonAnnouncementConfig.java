@@ -11,6 +11,7 @@ public class SeasonAnnouncementConfig {
     public static int displayDuration = 200;
     public static double textScale = 3.5;
     public static boolean enableYearCycle = true;
+    public static boolean owlYearZombiesInAllDimensions = true;
 
     public static void load(File configDir) {
         try {
@@ -48,6 +49,14 @@ public class SeasonAnnouncementConfig {
                     "general",
                     true,
                     "If false — disables the year cycle system (no zodiac years or messages)."
+            );
+
+            owlYearZombiesInAllDimensions = cfg.getBoolean(
+                    "owlYearZombiesInAllDimensions",
+                    "yearEffects",
+                    true,
+                    "If true, equipped Owl-year zombies can spawn in any dimension. " +
+                            "If false, they spawn only in the Overworld."
             );
 
             if (cfg.hasChanged()) cfg.save();

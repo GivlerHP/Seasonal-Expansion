@@ -17,6 +17,8 @@ season.message.autumn=Опавшие листья шепчут\nоб насту�
 season.message.winter=Холодные ветра Лордрана\nпринесли зиму
 
 seasonalexpansion.telescope.message=Звёзды указывают, что сейчас %s
+commands.currentyear.usage=/currentyear — показывает текущий год Ариамиса
+commands.currentyear.message=Сейчас %s — %s
 sereneexpansion.breeding.winter=Зимой животные не размножаются из-за суровых условий
 
 # === Year Cycle ===

@@ -1,35 +1,67 @@
 package ru.givler.seasonalexpansion.registry;
 
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import ru.givler.mbo.block.BlockModels;
 import ru.givler.seasonalexpansion.block.BlockTelescope;
-import ru.givler.seasonalexpansion.block.ModelTelescope;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 
-public class BlockRegistry {
-
+public final class BlockRegistry {
     public static Block telescope;
-    public static BlockModels mdtelescope;
+    public static Block mdtelescope;
 
-    @Mod.EventHandler
+    private BlockRegistry() {}
+
     public static void preLoad(FMLPreInitializationEvent event) {
-        if(Loader.isModLoaded("mbo")) {
-        mdtelescope  = new ModelTelescope(Material.iron, "mdtelescope", "telescope", "telescope");
-        mdtelescope.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.4F, 0.7F);
-        }else {
+        if (Loader.isModLoaded("mbo")) {
+            mdtelescope = createMboTelescope();
+            mdtelescope.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.4F, 0.7F);
+        } else {
             telescope = new BlockTelescope(Material.iron, "telescope");
         }
     }
 
-    @Mod.EventHandler
     public static void init(FMLInitializationEvent event) {
-        if(Loader.isModLoaded("mbo")) {
-        mdtelescope.register();
+        if (mdtelescope != null) invokeNoArgs(mdtelescope, "register");
+    }
+
+    public static void bindMboTelescopeRenderer() {
+        if (mdtelescope == null) return;
+        try {
+            Class<?> proxy = Class.forName("ru.givler.mbo.proxy.ClientProxy");
+            for (Method method : proxy.getMethods()) {
+                if (method.getName().equals("bindDefaultRender") && method.getParameterTypes().length == 1) {
+                    method.invoke(null, mdtelescope);
+                    return;
+                }
+            }
+            throw new NoSuchMethodException("bindDefaultRender");
+        } catch (ReflectiveOperationException e) {
+            throw new IllegalStateException("Failed to bind MBO telescope renderer", e);
+        }
+    }
+
+    private static Block createMboTelescope() {
+        try {
+            Class<?> type = Class.forName("ru.givler.seasonalexpansion.block.ModelTelescope");
+            Constructor<?> constructor = type.getConstructor(
+                    Material.class, String.class, String.class, String.class
+            );
+            return (Block) constructor.newInstance(Material.iron, "mdtelescope", "telescope", "telescope");
+        } catch (ReflectiveOperationException e) {
+            throw new IllegalStateException("Failed to create MBO telescope", e);
+        }
+    }
+
+    private static void invokeNoArgs(Object target, String methodName) {
+        try {
+            target.getClass().getMethod(methodName).invoke(target);
+        } catch (ReflectiveOperationException e) {
+            throw new IllegalStateException("Failed to invoke " + methodName, e);
         }
     }
 }

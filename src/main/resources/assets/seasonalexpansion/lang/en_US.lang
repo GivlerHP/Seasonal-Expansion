@@ -15,7 +15,9 @@ season.message.summer=The summer sun has burned\naway the last touch of spring's
 season.message.autumn=Fallen leaves whisper\nof the coming autumn
 season.message.winter=Cold winds of Lordran\nhave brought the winter
 
-message.telescope.year=The stars reveal that it is now %s
+seasonalexpansion.telescope.message=The stars reveal that it is now %s
+commands.currentyear.usage=/currentyear - shows the current year of Ariamis
+commands.currentyear.message=It is now %s - %s
 
 # === Year Cycle ===
 year.announcement=%s has begun

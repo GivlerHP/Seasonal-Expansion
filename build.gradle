@@ -63,10 +63,15 @@ dependencies {
    // implementation name: 'bukkit'
    // compile name: 'Baubles'
 
-    compile name: "geckolib-unofficial-1.7.10-1.0.3-dev"
-    compile name: "Baubles-1.7.10-1.0.1.10-dev"
-    compile name: "MoreBeyondOrdinary-1.7.0-deobf"
-    compileOnly name: "SereneSeasons-Ariamis-1.0-deobf"
+    implementation name: "Thaumcraft"
+    implementation name: "CodeChickenLib-1.7.10-1.1.3.141-universal"
+    implementation name: "CodeChickenCore-1.7.10-1.0.7.48-universal"
+    implementation name: "NotEnoughItems-1.7.10-1.0.5.120-universal"
+    implementation name: "geckolib-unofficial-1.7.10-1.0.3-dev"
+    implementation name: "Baubles-1.7.10-1.0.1.10-dev"
+    implementation name: "MF2-dev"
+    implementation name: "MoreBeyondOrdinary-1.16.5-deobf"
+    compileOnly name: "SereneSeasons-1.7.10-1.3.0"
 }
 
 task deobfJar(type: Jar) {
@@ -113,3 +118,12 @@ task copyMod(type: Copy) {
 
 // Настроим задачу на выполнение после задачи сборки Jar
 jar.finalizedBy(copyMod)
+
+task copySereneSeasons(type: Copy) {
+    from 'libs/SereneSeasons-1.7.10-1.3.0.jar'
+    into 'run/mods'
+}
+
+tasks.matching { it.name == 'runClient' }.all {
+    it.dependsOn copySereneSeasons
+}
