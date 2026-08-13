@@ -14,7 +14,7 @@ import ru.givler.seasonalexpansion.network.packet.S2CPoisonRainPacket;
 import ru.givler.seasonalexpansion.util.YearSystem;
 import ru.givler.seasonalexpansion.world.PoisonRainWorldData;
 
-final class PoisonRainHandler {
+public final class PoisonRainHandler {
     private static final int YEAR_SNAKE = 3;
     private static final int CHANCE_INTERVAL = 1200;
     private static final int DURATION_TICKS = 1200;

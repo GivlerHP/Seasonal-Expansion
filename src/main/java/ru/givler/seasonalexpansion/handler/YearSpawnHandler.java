@@ -7,7 +7,7 @@ import ru.givler.seasonalexpansion.entity.EntityDireWolf;
 import ru.givler.seasonalexpansion.entity.EntityRaven;
 import ru.givler.seasonalexpansion.util.YearSystem;
 
-final class YearSpawnHandler {
+public final class YearSpawnHandler {
     private static final int YEAR_DRAGON = 0;
     private static final int YEAR_WOLF = 2;
     private static final int YEAR_RAVEN = 5;

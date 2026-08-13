@@ -7,7 +7,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import ru.givler.seasonalexpansion.util.YearSystem;
 
-final class BatYearHandler {
+public final class BatYearHandler {
     private static final int YEAR_BAT = 1;
 
     @SubscribeEvent
