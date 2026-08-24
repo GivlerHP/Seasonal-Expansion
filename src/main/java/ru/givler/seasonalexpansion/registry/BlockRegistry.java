@@ -17,16 +17,21 @@ public final class BlockRegistry {
     private BlockRegistry() {}
 
     public static void preLoad(FMLPreInitializationEvent event) {
-        if (Loader.isModLoaded("mbo")) {
-            mdtelescope = createMboTelescope();
-            mdtelescope.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.4F, 0.7F);
-        } else {
+        if (!Loader.isModLoaded("mbo")) {
             telescope = new BlockTelescope(Material.iron, "telescope");
         }
     }
 
     public static void init(FMLInitializationEvent event) {
-        if (mdtelescope != null) invokeNoArgs(mdtelescope, "register");
+        if (Loader.isModLoaded("mbo")) {
+            // BlockModels adds every instance to MBO's global model list. Creating this
+            // block during preInit lets MBO register it first under the "mbo" namespace.
+            // Create it only after MBO has processed that list, then register it while
+            // SeasonalExpansion is the active mod container.
+            mdtelescope = createMboTelescope();
+            mdtelescope.setBlockBounds(0.3F, 0.0F, 0.3F, 0.7F, 1.4F, 0.7F);
+            invokeNoArgs(mdtelescope, "register");
+        }
     }
 
     public static void bindMboTelescopeRenderer() {

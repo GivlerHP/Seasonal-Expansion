@@ -70,4 +70,16 @@ public class EntityDireWolf extends EntityWolf {
     public boolean isAngry() {
         return true;
     }
+
+    @Override
+    public float getTailRotation() {
+        // Keep the tail lowered and stable. The vanilla angry angle holds it almost upright.
+        return (float) Math.PI / 5.0F;
+    }
+
+    @Override
+    protected boolean canDespawn() {
+        // Name tags mark important mobs and must protect them from natural despawning.
+        return !this.hasCustomNameTag();
+    }
 }

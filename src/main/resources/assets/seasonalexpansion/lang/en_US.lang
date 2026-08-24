@@ -16,6 +16,7 @@ season.message.autumn=Fallen leaves whisper\nof the coming autumn
 season.message.winter=Cold winds of Lordran\nhave brought the winter
 
 seasonalexpansion.telescope.message=The stars reveal that it is now %s
+seasonalexpansion.telescope.daytime=Looking at the sun this way will only burn your retina.
 commands.currentyear.usage=/currentyear - shows the current year of Ariamis
 commands.currentyear.message=It is now %s - %s
 

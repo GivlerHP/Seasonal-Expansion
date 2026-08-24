@@ -11,7 +11,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import ru.givler.seasonalexpansion.registry.EntityMobRegistry;
 import ru.givler.seasonalexpansion.proxy.CommonProxy;
 
-@Mod(modid= SeasonalExpansion.ID, name= SeasonalExpansion.NAME, version= SeasonalExpansion.VERSION, dependencies = "required-after:sereneseasons" )
+@Mod(modid= SeasonalExpansion.ID, name= SeasonalExpansion.NAME, version= SeasonalExpansion.VERSION, dependencies = "required-after:sereneseasons;after:mbo" )
 public class SeasonalExpansion {
 	public static final String ID = "seasonalexpansion";
 	public static final String NAME = "SeasonalExpansion";

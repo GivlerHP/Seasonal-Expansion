@@ -64,7 +64,9 @@ public final class PoisonRainHandler {
     }
 
     private static void applyEffects(World world) {
-        for (Object object : world.loadedEntityList) {
+        // Applying potion effects can fire events that add or remove entities.
+        // Iterate over a snapshot so those changes do not invalidate the world's list iterator.
+        for (Object object : world.loadedEntityList.toArray()) {
             if (!(object instanceof EntityLivingBase)) continue;
             EntityLivingBase entity = (EntityLivingBase) object;
             if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode) continue;

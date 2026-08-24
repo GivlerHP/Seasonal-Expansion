@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
     options.compilerArgs << '-Xlint:unchecked'
 }
 
-version = "1.14.1"
+version = "1.15.0"
 group= "ru.givler.seasonalexpansion" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "SeasonalExpansion"
 
@@ -63,14 +63,14 @@ dependencies {
    // implementation name: 'bukkit'
    // compile name: 'Baubles'
 
-    implementation name: "Thaumcraft"
+    implementation name: "Thaumcraft-4-Ariamis-4.2.4.0-deobf"
     implementation name: "CodeChickenLib-1.7.10-1.1.3.141-universal"
     implementation name: "CodeChickenCore-1.7.10-1.0.7.48-universal"
     implementation name: "NotEnoughItems-1.7.10-1.0.5.120-universal"
-    implementation name: "geckolib-unofficial-1.7.10-1.0.3-dev"
+    implementation name: "geckolib-unofficial-1.7.10-1.0.4-dev"
     implementation name: "Baubles-1.7.10-1.0.1.10-dev"
     implementation name: "MF2-dev"
-    implementation name: "MoreBeyondOrdinary-1.16.5-deobf"
+    implementation name: "MoreBeyondOrdinary-1.20.0-deobf"
     compileOnly name: "SereneSeasons-1.7.10-1.3.0"
 }
 

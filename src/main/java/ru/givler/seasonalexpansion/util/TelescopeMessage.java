@@ -9,6 +9,14 @@ import net.minecraft.world.World;
 public final class TelescopeMessage {
     private TelescopeMessage() {}
 
+    public static void use(EntityPlayer player, World world) {
+        if (world.isDaytime()) {
+            sendDaytimeWarning(player);
+            return;
+        }
+        sendCurrentYear(player, world);
+    }
+
     public static void sendCurrentYear(EntityPlayer player, World world) {
         ChatComponentTranslation yearName = new ChatComponentTranslation(
                 "year.name." + YearSystem.getCurrentYearKey(world)
@@ -17,6 +25,14 @@ public final class TelescopeMessage {
                 "seasonalexpansion.telescope.message", yearName
         );
         message.setChatStyle(new ChatStyle().setColor(EnumChatFormatting.GOLD));
+        player.addChatMessage(message);
+    }
+
+    private static void sendDaytimeWarning(EntityPlayer player) {
+        ChatComponentTranslation message = new ChatComponentTranslation(
+                "seasonalexpansion.telescope.daytime"
+        );
+        message.setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED));
         player.addChatMessage(message);
     }
 }
