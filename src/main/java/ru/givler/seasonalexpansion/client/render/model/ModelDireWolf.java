@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 public class ModelDireWolf extends ModelWolf {
     private static final float TAIL_ANGLE = (float) Math.PI / 5.0F;
     private static final Field WOLF_TAIL = ReflectionHelper.findField(
-            ModelWolf.class, "wolfTail", "field_78180_h"
+            ModelWolf.class, "wolfTail", "field_78180_g"
     );
 
     @Override
